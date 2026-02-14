@@ -145,8 +145,8 @@ body {
 }
 
 .theme-toggle .icon {
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
   fill:var(--bg-main);
 }
 
@@ -246,7 +246,7 @@ body {
     cursor: pointer;
 }
 
-.game-buttons button:hover {
+.game-buttons button:hover, .game-buttons button:focus {
     border-bottom-color: var(--accent);
     border-top-color: var(--accent);
 }
@@ -313,6 +313,7 @@ body {
     justify-content: space-between;
     align-items: flex-start;
     gap: 40px;
+    border-bottom: 2px solid #3c2400;
 }
 
 .challenge h3 {
@@ -327,7 +328,8 @@ body {
 }
 
 .challenge input,
-.challenge button {
+.challenge button,
+#contact button {
     box-sizing: border-box;
 }
 
@@ -339,7 +341,7 @@ body {
     border: 2px solid #3c2400;
 }
 
-.challenge button {
+.challenge button, #contact button {
     font-family: "Cardo", serif;
     font-weight: 700;
     font-size: 18px;
@@ -349,9 +351,15 @@ body {
     height: 54px;
     padding: 0 20px;
     border: 2px solid #3c2400;
-    background: var(--text-main);
+    background-color: var(--text-main);
     color: var(--accent);
     cursor: pointer;
+}
+
+.challenge button:hover, #contact button:hover {
+    border: 2px solid #3c2400;
+    background: var(--accent);
+    color: var(--text-main);
 }
 
 .challenge-text {
@@ -393,11 +401,19 @@ body {
     font-size: 20px;
 }
 
-
-
 .contact {
     text-align: center;
     border-bottom: 2px solid #3c2400;
+}
+
+.contact h3 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.contact p {
+    font-size: 20px;
+    margin-bottom: 60px;
 }
 
 .contact form {
@@ -406,7 +422,12 @@ body {
     text-align: left;
 }
 
-.contact label {
+#contactForm label:not(fieldset label) {
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    word-spacing: 2px;
     display: block;
     margin-top: 20px;
     margin-bottom: 5px;
@@ -414,6 +435,9 @@ body {
 
 .contact input,
 .contact textarea {
+    font-family: "Cardo", serif;
+    font-size: 16px;
+    font-style: italic;
     width: 100%;
     padding: 10px;
     border: 2px solid #3c2400;
