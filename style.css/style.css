@@ -154,6 +154,33 @@ body {
   display: none;
 }
 
+#returnToTop {
+    display: none;
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    width: 55px;
+    height: 55px;
+    padding: 10px 15px;
+    border-radius: 50%;
+    border: 2px solid var(--text-main);
+    background-color: var(--text-main);
+    color: var(--accent);
+    font-size: 22px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    cursor: pointer;
+}
+
+#returnToTop:hover {
+    background-color: var(--accent);
+    color: var(--text-main);
+    text-decoration: none;
+}
+
 .hero {
     padding: 0;
 }
