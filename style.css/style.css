@@ -55,10 +55,11 @@ table {
     border-spacing: 0;
 }
 
+*, *::before, *::after { box-sizing: border-box; }
+
 /*-------------------- ROOT VARIABLES --------------------*/
 
 :root {
-font-family: "Georgia", serif;
   --bg-main: #F4EBD0;
   --bg-section: #FFF8E7;
   --text-main:#3c2400;
@@ -84,7 +85,6 @@ body {
     max-width: 1280px;
     margin: 0 auto;
     background-color:var(--bg-main);
-    font-family: "Georgia", serif;
     color:var(--text-main);
     line-height: 1.6;
 }
@@ -241,10 +241,6 @@ body {
     align-items: center;
 }
 
-.about-text{
-    display: block;
-}
-
 .about h3 {
     font-size: 36px;
     max-width: 560px;
@@ -363,7 +359,6 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 40px;
     border-bottom: 2px solid #3c2400;
 }
 
@@ -376,12 +371,6 @@ body {
     font-size: 20px;
     max-width: 560px;
     margin-bottom: 80px;
-}
-
-.challenge input,
-.challenge button,
-#contact button {
-    box-sizing: border-box;
 }
 
 .challenge input {
@@ -399,7 +388,7 @@ body {
     margin-right: 10px;
 }
 
-.challenge button, #contact button {
+.challenge button {
     font-family: "Cardo", serif;
     font-weight: 700;
     font-size: 18px;
@@ -414,9 +403,9 @@ body {
     cursor: pointer;
 }
 
-.challenge button:hover, #contact button:hover, .theme-toggle:hover {
+.challenge button:hover, .contact button:hover, .theme-toggle:hover {
     border: 2px solid #3c2400;
-    background: var(--accent);
+    background-color: var(--accent);
     color: var(--text-main);
 }
 
@@ -452,10 +441,9 @@ body {
 
 .challenge-results h4 {
     font-size: 36px;
-    margin: 10px 0;
 }
 
-.challenge-reults p {
+.challenge-results p {
     font-size: 20px;
 }
 
@@ -481,17 +469,6 @@ body {
     text-align: left;
 }
 
-#contactForm label:not(fieldset label) {
-    font-size: 18px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
-    word-spacing: 2px;
-    text-align: right;
-    margin-right: 10px;
-    display: block;
-}
-
 .contact input,
 .contact textarea {
     font-family: "Cardo", serif;
@@ -509,7 +486,10 @@ body {
 
 .form-row label {
     width: 250px;
-    font-weight: bold;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: right;
+    margin-right: 10px;
 }
 
 .form-row input,
@@ -539,7 +519,6 @@ body {
 }
 
 fieldset {
-    display: block;
     max-width: 600px;
     width: 100%;
     margin: 20px auto;
@@ -584,11 +563,19 @@ fieldset {
 
 .contact button {
     display: block;
-    margin: 35px auto 0;
+    font-family: "Cardo", serif;
+    font-weight: 700;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    word-spacing: 2px;
+    height: 54px;
     padding: 10px 30px;
     border: 2px solid #3c2400;
-    background: none;
+    background-color: var(--text-main);
+    color: var(--accent); 
     cursor: pointer;
+    margin: 35px auto 0;
 }
 
 /* FOOTER SECTION */
