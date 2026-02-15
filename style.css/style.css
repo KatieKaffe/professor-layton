@@ -69,7 +69,8 @@ font-family: "Georgia", serif;
 
 /*-------------------- GLOBAL STYLES --------------------*/
 
-body.dark-mode {
+/* DARK MODE */
+body.dark-mode {              
   --bg-main: #1C1F2A;
   --bg-section: #252938;
   --text-main: #F4EBD0;
@@ -78,6 +79,7 @@ body.dark-mode {
   --border: #A88C3A;
 }
 
+/* BODY */
 body {
     max-width: 1280px;
     margin: 0 auto;
@@ -93,6 +95,7 @@ body {
     padding: 80px 100px;
 }
 
+/* HEADER */
 .header {
     display: flex;
     justify-content: space-between;
@@ -113,6 +116,7 @@ body {
     margin-left: -210px;
 }
 
+/* NAVIGATION */
 .navbar {
     display: flex;
     align-items: center;
@@ -129,8 +133,14 @@ body {
     text-decoration: none;
     color:#3c2400;
     font-size: 24px;
+    border-bottom: 3px solid transparent;
 }
 
+.nav-links a:hover {
+    border-bottom-color: var(--accent);
+}
+
+/* DARK MODE BUTTON */
 .theme-toggle {
   width: 40px;
   height: 40px;
@@ -154,6 +164,15 @@ body {
   display: none;
 }
 
+.theme-toggle:hover .icon {
+    fill: var(--text-main);
+}
+
+.theme-toggle:hover .sun-icon {
+    fill: var(--bg-main);
+}
+
+/* RETURN TO TOP STICKY BUTTON */
 #returnToTop {
     display: none;
     position: fixed;
@@ -178,9 +197,9 @@ body {
 #returnToTop:hover {
     background-color: var(--accent);
     color: var(--text-main);
-    text-decoration: none;
 }
 
+/* HERO SECTION */
 .hero {
     padding: 0;
 }
@@ -199,7 +218,7 @@ body {
   position: absolute;
   top: 62%;
   left: 20%;
-  color: var(--bg-main);
+  color: white;
 }
 
 .hero-text h2 {
@@ -214,6 +233,7 @@ body {
  text-shadow: 2px 2px 8px rgba(0, 0, 0, 1);
 }
 
+/* ABOUT SECTION */
 .about {
     display: flex;
     grid-template-columns: auto auto; 
@@ -242,6 +262,7 @@ body {
     margin-left: 60px;
 }
 
+/* GAME COLLECTION SECTION */
 .games {
     border-bottom: 2px solid #3c2400;
 }
@@ -335,6 +356,7 @@ body {
     margin-top: 30px;
 }
 
+/* GUESSING GAME SECTION */
 .challenge {
     display: flex;
     justify-content: space-between;
@@ -364,8 +386,15 @@ body {
     width: 80px;
     height: 54px;
     padding: 0 8px;
-    margin-right: 20px;
+    margin-right: 40px;
     border: 2px solid #3c2400;
+}
+
+.challenge-input label {
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-right: 10px;
 }
 
 .challenge button, #contact button {
@@ -383,7 +412,7 @@ body {
     cursor: pointer;
 }
 
-.challenge button:hover, #contact button:hover {
+.challenge button:hover, #contact button:hover, .theme-toggle:hover {
     border: 2px solid #3c2400;
     background: var(--accent);
     color: var(--text-main);
@@ -428,6 +457,7 @@ body {
     font-size: 20px;
 }
 
+/* CONTACT SECTION */
 .contact {
     text-align: center;
     border-bottom: 2px solid #3c2400;
@@ -444,7 +474,7 @@ body {
 }
 
 .contact form {
-    max-width: 600px;
+    max-width: 800px;
     margin: 0 auto;
     text-align: left;
 }
@@ -455,9 +485,9 @@ body {
     text-transform: uppercase;
     letter-spacing: 0.02em;
     word-spacing: 2px;
+    text-align: right;
+    margin-right: 10px;
     display: block;
-    margin-top: 20px;
-    margin-bottom: 5px;
 }
 
 .contact input,
@@ -470,23 +500,97 @@ body {
     border: 2px solid #3c2400;
 }
 
+.form-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.form-row label {
+    width: 250px;
+    font-weight: bold;
+}
+
+.form-row input,
+.form-row textarea {
+    flex: 1;
+}
+
 .contact textarea {
     height: 120px;
 }
 
+#contactForm label[for="notes"] {
+    align-self: start;
+    margin-top: 5px;
+}
+
+.visually-hidden {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(0 0 50px 0);
+    white-space: nowrap;
+    border: 0;
+}
+
 fieldset {
-    margin-top: 20px;
-    border: none;
+    display: block;
+    max-width: 600px;
+    width: 100%;
+    margin: 20px auto;
+}
+
+.fieldset-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    justify-content: center;
+}
+
+.correspondence-label {
+    display: inline-block;     
+    min-width: 250px;
+    font-weight: 700;
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.radio-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.radio-buttons label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+    line-height: 1.5; 
+}
+
+.radio-buttons input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    padding: 0;
+    vertical-align: middle;
 }
 
 .contact button {
-    margin-top: 30px;
+    display: block;
+    margin: 35px auto 0;
     padding: 10px 30px;
     border: 2px solid #3c2400;
     background: none;
     cursor: pointer;
 }
 
+/* FOOTER SECTION */
 .footer {
     display: flex;
     justify-content: space-between;
