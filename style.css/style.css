@@ -62,23 +62,17 @@ table {
 
 :root {
   --bg-main: #F4EBD0;
-  --bg-section: #FFF8E7;
   --text-main:#3c2400;
   --accent: #C6A74E;
-  --accent-dark: #8B6B1F;
-  --border: #5C4714;
 }
 
 /*-------------------- GLOBAL STYLES --------------------*/
 
 /* DARK MODE */
-body.dark-mode {              
-  --bg-main: #1C1F2A;
-  --bg-section: #252938;
+.dark-mode {              
+  --bg-main: #3c2400;
   --text-main: #F4EBD0;
   --accent: #D4AF37;
-  --accent-dark: #8B6B1F;
-  --border: #A88C3A;
 }
 
 /* BODY */
@@ -102,7 +96,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 20px 100px;
-    border-bottom: 2px solid #3c2400;
+    border-bottom: 2px solid var(--text-main);
 }
 
 .logo img {
@@ -132,7 +126,7 @@ body {
 
 .nav-links a {
     text-decoration: none;
-    color:#3c2400;
+    color:var(--text-main);
     font-size: 24px;
     border-bottom: 3px solid transparent;
 }
@@ -147,12 +141,20 @@ body {
   height: 40px;
   border-radius: 50%;
   border: none;
-  background-color: #3c2400;
+  background-color: var(--text-main);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   padding: 0;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  fill: var(--bg-main);
+  stroke: var(--bg-main);
+  stroke-width: 2;
 }
 
 .theme-toggle .icon {
@@ -165,12 +167,22 @@ body {
   display: none;
 }
 
+.dark-mode .theme-toggle .moon-icon {
+  display: none;
+}
+
+.dark-mode .theme-toggle .sun-icon {
+  display: block;
+}
+
 .theme-toggle:hover .icon {
     fill: var(--text-main);
+    stroke: none;
 }
 
 .theme-toggle:hover .sun-icon {
     fill: var(--bg-main);
+    stroke: var(--bg-main);
 }
 
 /* RETURN TO TOP STICKY BUTTON */
@@ -206,12 +218,12 @@ body {
 }
 
 .hero-image {
-  height: 640px;
+  height: 642px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
-  border-bottom: 2px solid #3c2400;
+  border-bottom: 2px solid var(--text-main);
 }
 
 .hero-text {
@@ -238,7 +250,7 @@ body {
 .about {
     display: flex;
     grid-template-columns: auto auto; 
-    border-bottom: 2px solid #3c2400;
+    border-bottom: 2px solid var(--text-main);
     align-items: center;
 }
 
@@ -257,12 +269,12 @@ body {
     height: 420px;
     border-radius: 50%;
     margin-left: 60px;
-    border: 2px solid #3c2400;
+    border: 2px solid var(--text-main);
 }
 
 /* GAME COLLECTION SECTION */
 .games {
-    border-bottom: 2px solid #3c2400;
+    border-bottom: 2px solid var(--text-main);
 }
 
 .games h3 {
@@ -297,6 +309,12 @@ body {
     border-top-color: var(--accent);
 }
 
+.game-buttons button.active {
+    border-bottom-color: var(--accent);
+    border-top-color: var(--accent);
+    color: var(--accent);
+}
+
 .game-bio {
     display: none;
     grid-template-columns: 500px 1fr;
@@ -311,7 +329,7 @@ body {
 
 .game-bio img:not(.platform-DS):not(.platform-3DS):not(.platform-switch) {
     height: 400px;
-    border: 2px solid #3c2400;
+    border: 2px solid var(--text-main);
 }
 
 .game-details {
@@ -360,7 +378,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    border-bottom: 2px solid #3c2400;
+    border-bottom: 2px solid var(--text-main);
 }
 
 .challenge h3 {
@@ -379,7 +397,7 @@ body {
     height: 54px;
     padding: 0 8px;
     margin-right: 40px;
-    border: 2px solid #3c2400;
+    border: 2px solid var(--text-main);
 }
 
 .challenge-input label {
@@ -398,14 +416,14 @@ body {
     word-spacing: 2px;
     height: 54px;
     padding: 0 20px;
-    border: 2px solid #3c2400;
+    border: 2px solid var(--text-main);
     background-color: var(--text-main);
     color: var(--accent);
     cursor: pointer;
 }
 
 .challenge button:hover, .contact button:hover, .theme-toggle:hover {
-    border: 2px solid #3c2400;
+    border: 2px solid var(--text-main);
     background-color: var(--accent);
     color: var(--text-main);
 }
@@ -446,12 +464,18 @@ body {
 
 .challenge-results p {
     font-size: 20px;
+    margin-bottom: 0;
+}
+
+#winNumber, #loseNumber {
+    font-weight: 700;
+    color: var(--accent);
 }
 
 /* CONTACT SECTION */
 .contact {
     text-align: center;
-    border-bottom: 2px solid #3c2400;
+    border-bottom: 2px solid var(--text-main);
 }
 
 .contact h3 {
@@ -476,7 +500,7 @@ body {
     font-size: 16px;
     width: 100%;
     padding: 10px;
-    border: 2px solid #3c2400;
+    border: 2px solid var(--text-main);
 }
 
 .form-row {
@@ -572,7 +596,7 @@ fieldset {
     word-spacing: 2px;
     height: 54px;
     padding: 10px 30px;
-    border: 2px solid #3c2400;
+    border: 2px solid var(--text-main);
     background-color: var(--text-main);
     color: var(--accent); 
     cursor: pointer;

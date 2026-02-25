@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <link href="./style.css/style.css" rel="stylesheet" type="text/css">
-    <script src="script.js/script.js"></script>
+    <script src="./script.js/script.js" defer></script>
 </head>
 
 <body>
@@ -26,8 +26,9 @@
                 <svg class="icon moon-icon" viewBox="0 0 24 24">
                     <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
                 </svg>
-                <svg class="icon sun-icon" viewBox="0 0 24 24">
-                <circle cx="12" cy="12" r="5"/>
+                <svg class="icon sun-icon" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="5"/>
+                    <path d="M12 1v2M12 21v2M4.22 4.22l1.41 1.41M18.36 18.36l1.41 1.41M1 12h2M21 12h2M4.22 19.78l1.41-1.41M18.36 6.34l1.41-1.41"/>
                 </svg>
             </button>
         </nav>
@@ -63,7 +64,7 @@
                 <button data-game="last-specter">Last Specter</button>
                 <button data-game="miracle-mask">Miracle Mask</button>
                 <button data-game="azran-legacy">Azran Legacy</button>
-                <button data-game="new-world-steam">New World of Steam</button>
+                <button data-game="world-of-steam">New World of Steam</button>
             </div>
 
             <div class="game-bios">
@@ -165,13 +166,13 @@
                 <section id="winResult" class="hidden">
                     <img src="images/win.png" alt="Professor Layton celebrating">
                     <h4>SUCCESS!</h4>
-                    <p>Brilliant deduction! You've cracked the code!</p>
+                    <p>Brilliant deduction! You've cracked the code!<br>The secret number was <span id="winNumber"></span>.</p>
                 </section>
 
                 <section id="loseResult" class="hidden">
                     <img src="images/lose.png" alt="Professor Layton stumped">
                     <h4>FAILED</h4>
-                    <p>Try again, Detective!</p>
+                    <p>Try again, Detective!<br>The secret number was <span id="loseNumber"></span>.</p>
                 </section>
             </div>
         </div>
