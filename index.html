@@ -184,22 +184,34 @@
             <form id="contactForm">
                 <div class="form-row">
                     <label for="name">Detective Name:</label>
-                    <input type="text" id="name" placeholder="Herschel Layton">
+                    <div class ="input-wrapper">
+                        <input type="text" id="name" placeholder="Herschel Layton">
+                        <span class="error" id="nameError"></span>
+                    </div>
                 </div>
 
                 <div class="form-row">
                     <label for="phone">Telegraph Line:</label>
-                    <input type="tel" id="phone" placeholder="800-555-1234">
+                    <div class ="input-wrapper">
+                        <input type="tel" id="phone" placeholder="800-555-1234">
+                        <span class="error" id="phoneError"></span>
+                    </div>
                 </div>
 
                 <div class="form-row">
                     <label for="email">Electronic Mail:</label>
-                    <input type="email" id="email" placeholder="luke@puzzlemaster.com">
+                    <div class ="input-wrapper">
+                        <input type="email" id="email" placeholder="luke@puzzlemaster.com">
+                        <span class="error" id="emailError"></span>
+                    </div>
                 </div>
 
                 <div class="form-row">   
                     <label for="notes">Case Notes:</label>
-                    <textarea id="notes" placeholder="Describe the mysterious occurence..."></textarea>
+                    <div class ="input-wrapper">
+                        <textarea id="notes" placeholder="Describe the mysterious occurence..."></textarea>
+                        <span class="error" id="notesError"></span>
+                    </div>
                 </div>
 
                 <fieldset>
@@ -209,15 +221,16 @@
                         <span class="correspondence-label">Preferred Correspondence Method:</span>
                         <div class="radio-buttons">
                             <label>
-                                <input type="radio" name="contactMethod" value="phone">Telegraph Line
+                                <input type="radio" name="contactMethod" value="telegraph line">Telegraph Line
                             </label>
                             <label>
-                                <input type="radio" name="contactMethod" value="email">Electronic Mail
+                                <input type="radio" name="contactMethod" value="electronic mail">Electronic Mail
                             </label>
                             <label>
-                                <input type="radio" name="contactMethod" value="all">All Means Necessary
+                                <input type="radio" name="contactMethod" value="telegraph line and electronic mail" id="allMethod">All Means Necessary
                             </label>
                         </div>
+                        <span class="error" id="contactMethodError"></span>
                     </div>
                 </fieldset>
 

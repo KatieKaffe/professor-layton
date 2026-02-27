@@ -1,4 +1,4 @@
-"use strict";  //executes the js code globally by being at the very top
+"use strict";  //executes the js code globally
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const winNumber = document.getElementById("winNumber");
     const loseNumber = document.getElementById("loseNumber");
 
-    function resetGame() {     //Resets game to starting state
+    function resetGame() {     //resets game to starting state
         secretCode = getRandomNumber (1, 10);
         console.log("New Secret Code: ", secretCode);
 
@@ -80,14 +80,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const codeGuess = Number(guessInput.value);
 
-        if (codeGuess < 1 || codeGuess > 10 || isNaN(codeGuess)) {     //evaluates what is entered in the guess input field to make sure it is a valid entry, and provides error message if entry is invalid
+        if (codeGuess < 1 || codeGuess > 10 || isNaN(codeGuess)) {     //validates whether guess input is a number between 1 and 10, and provides alert message if entry is invalid
             alert("Please enter a number between 1 and 10.");
             return;
         }
 
         guessPrompt.classList.add("hidden");      //once a guess attempt is made, the starting prompt is hidden from view
 
-        if (codeGuess === secretCode) {.     //if user guess matches random number generated, win result section is made visible and lose result section is hidden from view
+        if (codeGuess === secretCode) {     //if user guess matches random number generated, win result section is made visible and lose result section is hidden from view
             winResult.classList.remove("hidden");
             loseResult.classList.add("hidden");
             winNumber.textContent = secretCode;     //reveals random number generated
@@ -105,5 +105,175 @@ document.addEventListener("DOMContentLoaded", () => {
     codeBtn.addEventListener("click", attemptCode);
     }
 
+    const form = document.getElementById("contactForm");
+    const nameInput = document.getElementById("name");
+    const phoneInput = document.getElementById("phone");
+    const emailInput = document.getElementById("email");
+    const notesInput = document.getElementById("notes");
+    const contactMethodInputs = document.querySelectorAll("input[name='contactMethod']");
+
+    const nameError = document.getElementById("nameError");
+    const phoneError = document.getElementById("phoneError");
+    const emailError = document.getElementById("emailError");
+    const notesError = document.getElementById("notesError");
+    const contactMethodError = document.getElementById("contactMethodError");
+    const confirmationMessage = document.getElementById("confirmationMessage");
+
+    const nameRegex = /^[A-Za-z\s'-]{2,}$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^\d{3}-\d{3}-\d{4}$/;
+    const notesRegex = /^.{5,}$/;
+
+    let attemptedSubmit = false;
+
+    // --- Helper to get selected radio ---
+    function getSelectedContactMethod() {
+        for (let radio of contactMethodInputs) {
+            if (radio.checked) return radio.value;
+        }
+        return null;
+    }
+
+    // --- Clear all errors ---
+    function clearErrors() {
+        [nameError, phoneError, emailError, notesError, contactMethodError].forEach(el => el.textContent = "");
+        [nameInput, phoneInput, emailInput, notesInput].forEach(el => el.classList.remove("invalid"));
+    }
+
+    // --- Validation functions ---
+    function validateName() {
+        const value = nameInput.value.trim();
+        if (!value) {
+            nameError.textContent = "First and last name are required.";
+            nameInput.classList.add("invalid");
+            return false;
+        }
+        if (!nameRegex.test(value)) {
+            nameError.textContent = "Please enter a valid first and last name.";
+            nameInput.classList.add("invalid");
+            return false;
+        }
+        nameError.textContent = "";
+        nameInput.classList.remove("invalid");
+        return true;
+    }
+
+    function validateNotes() {
+        const value = notesInput.value.trim();
+        if (!notesRegex.test(value)) {
+            notesError.textContent = "Please enter at least 5 characters.";
+            notesInput.classList.add("invalid");
+            return false;
+        }
+        notesError.textContent = "";
+        notesInput.classList.remove("invalid");
+        return true;
+    }
+
+    function validatePhone(selectedMethod) {
+        const value = phoneInput.value.trim();
+        const required = selectedMethod === "telegraph line" || selectedMethod === "telegraph line and electronic mail";
+
+        if (required && !value) {
+            phoneError.textContent = "Telegraph line is required.";
+            phoneInput.classList.add("invalid");
+            return false;
+        }
+
+        if (value && !phoneRegex.test(value)) {
+            phoneError.textContent = "Telegraph line must be in ###-###-#### format.";
+            phoneInput.classList.add("invalid");
+            return false;
+        }
+
+        phoneError.textContent = "";
+        phoneInput.classList.remove("invalid");
+        return true;
+    }
+
+    function validateEmail(selectedMethod) {
+        const value = emailInput.value.trim();
+        const required = selectedMethod === "electronic mail" || selectedMethod === "telegraph line and electronic mail";
+
+        if (required && !value) {
+            emailError.textContent = "Electronic mailing address is required.";
+            emailInput.classList.add("invalid");
+            return false;
+        }
+
+        if (value && !emailRegex.test(value)) {
+            emailError.textContent = "Please enter a valid electronic mailing address.";
+            emailInput.classList.add("invalid");
+            return false;
+        }
+
+        emailError.textContent = "";
+        emailInput.classList.remove("invalid");
+        return true;
+    }
+
+    // --- Live validation listeners ---
+    nameInput.addEventListener("input", () => {
+        if (attemptedSubmit) validateName();
+    });
+    notesInput.addEventListener("input", () => {
+        if (attemptedSubmit) validateNotes();
+    });
+    phoneInput.addEventListener("input", () => {
+        if (attemptedSubmit) validatePhone(getSelectedContactMethod());
+    });
+    emailInput.addEventListener("input", () => {
+        if (attemptedSubmit) validateEmail(getSelectedContactMethod());
+    });
+
+    // --- Radio change validation ---
+    contactMethodInputs.forEach(radio => {
+        radio.addEventListener("change", () => {
+            const selected = getSelectedContactMethod();
+            contactMethodError.textContent = "";
+            if (attemptedSubmit) {
+                validatePhone(selected);
+                validateEmail(selected);
+            }
+        });
+    });
+
+    // --- Form submit ---
+    form.addEventListener("submit", function(event) {
+        event.preventDefault();
+        attemptedSubmit = true;
+        clearErrors();
+
+        const selectedMethod = getSelectedContactMethod();
+        let valid = true;
+
+        if (!validateName()) valid = false;
+        if (!validateNotes()) valid = false;
+
+        if (!selectedMethod) {
+            contactMethodError.textContent = "Please choose a preferred correspondence method.";
+            valid = false;
+        }
+
+        if (!validatePhone(selectedMethod)) valid = false;
+        if (!validateEmail(selectedMethod)) valid = false;
+
+        if (!valid) return;
+
+        // Successful submission
+        attemptedSubmit = false;
+        const caseData = {
+            name: nameInput.value.trim(),
+            phone: phoneInput.value.trim(),
+            email: emailInput.value.trim(),
+            notes: notesInput.value.trim(),
+            preferredContact: selectedMethod
+        };
+
+        confirmationMessage.textContent = `Thank you, ${caseData.name}. Case received. Investigation underway! We will contact you via ${caseData.preferredContact}. Your notes: ${caseData.notes}`;
+        confirmationMessage.classList.remove("hidden");
+
+        form.reset();
+    });
 });
 

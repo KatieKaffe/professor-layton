@@ -603,6 +603,36 @@ fieldset {
     margin: 35px auto 0;
 }
 
+.input-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.error {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 4px;
+}
+
+input.invalid, textarea.invalid {
+    border: 2px solid red;
+}
+
+#confirmationMessage {
+    display: none;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-bottom: 0;
+    color: var(--accent);
+}
+
+#confirmationMessage:not(.hidden) {
+    display: block;
+}
+
 /* FOOTER SECTION */
 .footer {
     display: flex;
