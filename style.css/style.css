@@ -103,6 +103,21 @@ body {
     height: 60px;
 }
 
+.logo-dark {
+    display: none;
+}
+
+.dark-mode .logo-light {
+    display: none;
+}
+
+.dark-mode .logo-dark {
+    display: block;
+    height: 70px;
+    margin-top: -4px;
+    margin-left: -8px;
+}
+
 .website-title {
     font-family: "Cardo", serif;
     font-weight: 700;
@@ -633,7 +648,7 @@ input.invalid, textarea.invalid {
     display: block;
 }
 
-/* FOOTER SECTION */
+/* FOOTER */
 .footer {
     display: flex;
     justify-content: space-between;
